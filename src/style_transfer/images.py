@@ -37,7 +37,7 @@ def from_image_to_tensor(img_path, max_size=400, shape=None):
     return image
 
 
-def im_convert(tensor):
+def im_convert_to_numpy(tensor):
     """  Display a tensor as an image. Un-normalizing an image
     and converting it from a Tensor image to a NumPy image for display
 

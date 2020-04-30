@@ -7,7 +7,7 @@ import sys
 import click
 from IPython.core import ultratb
 
-import deep_learning_udacity
+import src
 
 # fallback to debugger on error
 sys.excepthook = ultratb.FormattedTB(mode='Verbose', color_scheme='Linux', call_pdb=1)
@@ -21,7 +21,7 @@ _logger = logging.getLogger(__name__)
 @click.option('--quiet', 'log_level', flag_value=logging.WARNING, default=True)
 @click.option('-v', '--verbose', 'log_level', flag_value=logging.INFO)
 @click.option('-vv', '--very-verbose', 'log_level', flag_value=logging.DEBUG)
-@click.version_option(deep_learning_udacity.__version__)
+@click.version_option(src.__version__)
 def main(cfg_path: Path, log_level: int):
     logging.basicConfig(stream=sys.stdout,
                         level=log_level,
