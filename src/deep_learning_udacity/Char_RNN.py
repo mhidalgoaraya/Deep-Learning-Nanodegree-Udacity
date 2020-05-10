@@ -144,7 +144,7 @@ def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001,
             # One-hot encode our data and make them Torch tensors
             x = one_hot_encode(x, n_chars)
             inputs, targets = torch.from_numpy(x), torch.from_numpy(y)
-
+            targets = targets.long()
             if net.train_on_gpu:
                 inputs, targets = inputs.cuda(), targets.cuda()
 
@@ -159,8 +159,6 @@ def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001,
             output, h = net(inputs, h)
 
             # calculate the loss and perform backprop
-            print(f"Length output {np.shape(output)}--- Length targets "
-                  f"{np.shape(targets.view(batch_size * seq_length))}")
             loss = criterion(output, targets.view(batch_size * seq_length))
             loss.backward()
             # `clip_grad_norm` helps prevent the exploding gradient problem in
@@ -179,14 +177,12 @@ def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001,
                     # One-hot encode our data and make them Torch tensors
                     x = one_hot_encode(x, n_chars)
                     x, y = torch.from_numpy(x), torch.from_numpy(y)
-
                     # Creating new variables for the hidden state, otherwise
                     # we'd backprop through the entire training history
                     val_h = tuple([each.data for each in val_h])
 
                     inputs, targets = x, y
                     if net.train_on_gpu:
-
                         inputs, targets = inputs.cuda(), targets.cuda()
 
                     output, val_h = net(inputs, val_h)
