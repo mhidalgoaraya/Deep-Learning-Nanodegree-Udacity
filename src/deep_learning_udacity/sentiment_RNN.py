@@ -101,8 +101,7 @@ def tokenize_review(test_review, vocab_to_int):
     test_words = test_text.split()
 
     # tokens
-    test_ints = []
-    test_ints.append([vocab_to_int[word] for word in test_words])
+    test_ints = [[vocab_to_int[word] for word in test_words]]
 
     return test_ints
 
