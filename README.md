@@ -1,4 +1,4 @@
-# Deep Learning Udacity Nanodegree Program
+# Deep Learning Projects
 
 These repository contains exercises and projects from [Udacity's](https://www.udacity.com/) [Deep Learning Nanodegree Program](https://www.udacity.com/course/deep-learning-nanodegree--nd101)
 
